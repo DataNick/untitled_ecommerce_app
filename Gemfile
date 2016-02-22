@@ -28,6 +28,8 @@ group :test do
   gem 'factory_girl_rails'
 end
 
+gem 'web-console', group: :development
+
 group :development do
   gem 'html2haml'
 end
@@ -36,7 +38,7 @@ end
 group :development, :test do
   gem 'byebug'
   gem 'pry-rails'
-  gem 'web-console', '~> 2.0'
+  # gem 'web-console', '~> 2.0'
   gem 'better_errors', '~> 2.1', '>= 2.1.1'
   gem 'spring'
 end
