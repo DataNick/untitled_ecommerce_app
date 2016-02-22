@@ -31,6 +31,11 @@ class CartTest < MiniTest::Test
     assert_equal cart.serialize, session_hash
   end
 
+  def test_builds_from_hash
+    cart = Cart.build_from_hash(session_hash)
+    assert_equal 1, cart.items.first.product_id
+  end
+
   private
 
   def session_hash
