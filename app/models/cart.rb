@@ -39,9 +39,7 @@ class Cart
       }
     end
     {
-      "cart" => {
         "items" => items
-      }
     }
   end
 
