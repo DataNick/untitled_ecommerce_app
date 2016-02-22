@@ -3,9 +3,14 @@ class Cart
   attr_reader :items #to fix undefined items method in test
 
   def self.build_from_hash(hash)
-    items = hash["cart"]["items"].map do |item_data|
-      CartItem.new(item_data["product_id"], item_data["quantity"])
+    items = if hash["cart"] then #checking if there is a cart item inside the session hash
+      hash["cart"]["items"].map do |item_data|
+        CartItem.new(item_data["product_id"], item_data["quantity"])
+      end
+    else
+      []
     end
+
     new items
   end
 
