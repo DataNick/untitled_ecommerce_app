@@ -6,6 +6,8 @@ Learning objectives:
 
 * 5+ model application
 
+* Model testing
+
 * Integrating payment system into an application
 
 * System dependencies
