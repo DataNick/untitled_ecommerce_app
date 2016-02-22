@@ -7,4 +7,12 @@ class CartItem
     @quantity = quantity
   end
 
+  def increment
+    @quantity += 1
+  end
+
+  def product
+    Product.find(product_id)
+  end
+
 end
