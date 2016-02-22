@@ -2,8 +2,15 @@ class Cart
 
   attr_reader :items #to fix undefined items method in test
 
-  def initialize
-    @items = []
+  def self.build_from_hash(hash)
+    items = hash["cart"]["items"].map do |item_data|
+      CartItem.new(item_data["product_id"], item_data["quantity"])
+    end
+    new items
+  end
+
+  def initialize(items = [])
+    @items = items
   end
 
   def add_item(product_id)
