@@ -12,4 +12,6 @@
         = link_to item.product.name, item.product
       %td= number_to_currency(item.total_price)
 
-%p= number_to_currency(@cart.total_price)
+%strong
+  Total:
+  =number_to_currency(@cart.total_price)
