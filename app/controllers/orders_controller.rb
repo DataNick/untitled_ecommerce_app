@@ -18,7 +18,8 @@ class OrdersController < ApplicationController
   private
 
   def notify_user
-    @order_form.user.send_reset_password_instructions # method available in user class; send email regarding password reset
+    @order_form.user.send_reset_password_instructions # method available in user class; send email regarding password send_reset_password_instructions
+    OrderMailer.order_confirmation(@order_form.order).deliver
   end
 
   def order_params
