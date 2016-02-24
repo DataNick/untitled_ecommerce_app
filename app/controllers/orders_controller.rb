@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
       )
 
     if @order_form.save
+      notify_user
       redirect_to root_path, notice: "Thank you for placing the order."
     else
       render "carts/checkout"
@@ -15,6 +16,10 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def notify_user
+    @order_form.user.send_reset_password_instructions # method available in user class; send email regarding password reset
+  end
 
   def order_params
     params.require(:order_form).permit(
