@@ -37,6 +37,6 @@
   %p= f.submit "Place order", class: "btn btn-primary"
 
   :javascript
-    braintree.setup("CLIENT-TOKEN-FROM-SERVER", "dropin", {
+    braintree.setup("#{@client_token}", "dropin", {
       container: "dropin-container"
     });
