@@ -8,7 +8,7 @@ class OrderTransaction
   def execute
     @result = Braintree::Transaction.sale(
       amount: order.total_price,
-      payment_method_price: nonce
+      payment_method_nonce: nonce
       )
   end
 
