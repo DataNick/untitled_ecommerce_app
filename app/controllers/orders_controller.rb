@@ -24,10 +24,18 @@ EOF
   end
 
   def new_payment #form to enter new credit card
-
+    @order = Order.find(params[:id]) #create a form that respects this order object
   end
 
   def pay #same function as the charge user method
+    @order = Order.find(params[:id])
+    transaction = OrderTransaction.new(@order, params[:payment_method_nonce])
+    transaction.execute
+    if transaction.ok?
+      redirect_to root_path, notice: "Thank you for placing the order."
+    else
+      render "orders/new_payment"
+    end
   end
 
   private
