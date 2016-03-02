@@ -1,0 +1,9 @@
+%h1 Enter Payment
+
+=render "data", order: @order
+
+=form_tag pay_order_path do
+  #dropin
+  =submit_tag "Pay", class: "btn btn-primary"
+  =render "braintree"
+end
