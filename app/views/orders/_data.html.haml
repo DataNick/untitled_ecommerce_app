@@ -1,6 +1,6 @@
 
 %ul
-  -order.items.each do |item|
+  -order.order_items.each do |item|
     %li
       %em= item.quantity
       = item.product.name
