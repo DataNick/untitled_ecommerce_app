@@ -42,9 +42,9 @@ ActiveRecord::Schema.define(version: 20160302221959) do
     t.string   "name"
     t.float    "price"
     t.string   "image"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "category_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "category_id", default: 1
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id"
