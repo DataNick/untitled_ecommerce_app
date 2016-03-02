@@ -25,6 +25,7 @@ EOF
 
   def new_payment #form to enter new credit card
     @order = Order.find(params[:id]) #create a form that respects this order object
+    @client_token = Braintree::ClientToken.generate
   end
 
   def pay #same function as the charge user method
