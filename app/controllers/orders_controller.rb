@@ -27,6 +27,15 @@ EOF
     end
   end
 
+  def update
+    @order = Order.find(params[:id])
+    @previous_state = @order.state
+    if @order.update(state_order_params)
+      notify_user_about_state
+      redirect_to orders_path, notice: "Order was updated."
+    end
+  end
+
   def new_payment #form to enter new credit card
     @order = Order.find(params[:id]) #create a form that respects this order object
     @client_token = Braintree::ClientToken.generate
@@ -50,10 +59,18 @@ EOF
     OrderMailer.order_confirmation(@order_form.order).deliver
   end
 
+  def notify_user_about_state
+    OrderMailer.state_changed(@order, @previous_state).deliver
+  end
+
   def order_params
     params.require(:order_form).permit(
       user: [ :name, :phone, :address, :city, :country, :postal_code, :email ]
       )
+  end
+
+  def state_order_params
+    params.require(:order).permit(:state) #order only contains state variable
   end
 
   def charge_user
