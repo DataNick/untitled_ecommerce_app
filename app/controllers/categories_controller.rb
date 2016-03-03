@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+    @products = @category.products
   end
 
   # GET /categories/new
@@ -64,7 +65,7 @@ class CategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
-      @category = Category.find(params[:id])
+      @category = Category.includes(:products).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
