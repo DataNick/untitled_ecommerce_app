@@ -29,4 +29,14 @@
         %p= time_ago_in_words(order.created_at)
         %p.text-muted=order.created_at.strftime("%b %d, %Y - %H:%M")
       %td
-        =order.state
+        =form_for @order do |f|
+          =f.select :state, Order::STATES
+
+:javascript
+  $(function (){
+    $("form select").on("change", function (){
+      $(this).parent("form").submit();
+    });
+  });
+/ whenever one of the select tags change, ensure form gets submitted
+/ whenever a select tag is changed in the scope of the form ("change" captures the change event), the function will pick up on that select button, go to the form and submit. In this way, we will trigger the action in the orders controller and when state attribute is changed, we will email the user.
