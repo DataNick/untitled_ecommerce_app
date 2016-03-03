@@ -20,13 +20,19 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: ENV["SMTP_ADDRESS"],
-    user_name: ENV["SMTP_USER"],
-    password: ENV["SMTP_PASSWORD"],
-    domain: "gmail.com",
+    address: ENV['SMTP_ADDRESS'],
+    user_name: ENV['SMTP_USER'],
+    password: ENV['SMTP_PASSWORD'],
+    domain: "localhost:3000",
     authentication: "plain",
     enable_starttls_auto: false
   }
+
+  Braintree::Configuration.environment = :sandbox
+  Braintree::Configuration.merchant_id = "9q468rym5hgt6rgh"
+  Braintree::Configuration.public_key = "d8x3cfbsvpprsrhw"
+  Braintree::Configuration.private_key = "0940ea171bab514703a9370fd96facb1"
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
